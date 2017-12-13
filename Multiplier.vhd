@@ -7,9 +7,9 @@ entity Multiplier is
 port( 	CLOCK_50: in std_logic;                        		--50MHz Clock pulse
 			A			: in std_logic_vector(7 downto 0);     	--A = SW(15-8)
 			B			: in std_logic_vector(7 downto 0);			--B = SW(7-0)
-			KEY		: in std_logic_vector(0 downto 0);      	--Start
-			Y			: buffer std_logic_vector(15 downto 0);	--Result of A * B
-			LEDG     : buffer std_logic_vector(5 downto 0)); 	--Status state machine
+			KEY		: in std_logic;						      	--Start
+			Y			: out std_logic_vector(15 downto 0);	--Result of A * B
+			LEDG     : out std_logic_vector(5 downto 0)); 	--Status state machine
 end Multiplier;
 
 architecture struct of Multiplier is 
@@ -34,7 +34,7 @@ begin
 	--		end if;
 	--end process;
 	
-	io02:Start <= not KEY(0);	-- Start button
+	io02:Start <= not KEY;	-- Start button
 	io03:Y  <= MUXout;		-- Show result calculation presented on the red LEDs
 	
 	-- State machine, Controller of the data path

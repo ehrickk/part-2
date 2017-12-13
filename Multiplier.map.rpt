@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Multiplier
-Wed Dec 13 11:44:14 2017
+Wed Dec 13 14:39:46 2017
 Quartus II 64-Bit Version 10.1 Build 197 01/19/2011 Service Pack 1 SJ Web Edition
 
 
@@ -47,15 +47,15 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                       ;
 +------------------------------------+-----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 13 11:44:14 2017         ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 13 14:39:46 2017         ;
 ; Quartus II 64-Bit Version          ; 10.1 Build 197 01/19/2011 SP 1 SJ Web Edition ;
 ; Revision Name                      ; Multiplier                                    ;
 ; Top-level Entity Name              ; Multiplier                                    ;
 ; Family                             ; Cyclone II                                    ;
-; Total logic elements               ; 0                                             ;
-;     Total combinational functions  ; 0                                             ;
-;     Dedicated logic registers      ; 0                                             ;
-; Total registers                    ; 0                                             ;
+; Total logic elements               ; 113                                           ;
+;     Total combinational functions  ; 105                                           ;
+;     Dedicated logic registers      ; 46                                            ;
+; Total registers                    ; 46                                            ;
 ; Total pins                         ; 40                                            ;
 ; Total virtual pins                 ; 0                                             ;
 ; Total memory bits                  ; 0                                             ;
@@ -165,37 +165,48 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+-----------------+------------------------------------------------------------------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-;                                             ;       ;
-; Total combinational functions               ; 0     ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 0     ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 0     ;
-;     -- Dedicated logic registers            ; 0     ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 40    ;
-+---------------------------------------------+-------+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                      ;
++---------------------------------------------+------------------------------------+
+; Resource                                    ; Usage                              ;
++---------------------------------------------+------------------------------------+
+; Estimated Total logic elements              ; 113                                ;
+;                                             ;                                    ;
+; Total combinational functions               ; 105                                ;
+; Logic element usage by number of LUT inputs ;                                    ;
+;     -- 4 input functions                    ; 36                                 ;
+;     -- 3 input functions                    ; 51                                 ;
+;     -- <=2 input functions                  ; 18                                 ;
+;                                             ;                                    ;
+; Logic elements by mode                      ;                                    ;
+;     -- normal mode                          ; 90                                 ;
+;     -- arithmetic mode                      ; 15                                 ;
+;                                             ;                                    ;
+; Total registers                             ; 46                                 ;
+;     -- Dedicated logic registers            ; 46                                 ;
+;     -- I/O registers                        ; 0                                  ;
+;                                             ;                                    ;
+; I/O pins                                    ; 40                                 ;
+; Maximum fan-out node                        ; State_machine:sm01|present_state.I ;
+; Maximum fan-out                             ; 75                                 ;
+; Total fan-out                               ; 492                                ;
+; Average fan-out                             ; 2.58                               ;
++---------------------------------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |Multiplier                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 40   ; 0            ; |Multiplier         ;              ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name            ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------+--------------+
+; |Multiplier                ; 105 (0)           ; 46 (0)       ; 0           ; 0            ; 0       ; 0         ; 40   ; 0            ; |Multiplier                    ;              ;
+;    |Add16:A1|              ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|Add16:A1           ;              ;
+;    |AllZero:Z1|            ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|AllZero:Z1         ;              ;
+;    |Reg16:G1|              ; 16 (16)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|Reg16:G1           ;              ;
+;    |Shifter:SR1|           ; 23 (23)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|Shifter:SR1        ;              ;
+;    |Shifter:SR2|           ; 23 (23)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|Shifter:SR2        ;              ;
+;    |State_machine:sm01|    ; 9 (9)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Multiplier|State_machine:sm01 ;              ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -214,38 +225,24 @@ Encoding Type:  One-Hot
 +-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; Shifter:SR1|Y[8..15]                   ; Stuck at GND due to stuck port data_in ;
-; Reg16:G1|Out_16[0..15]                 ; Stuck at GND due to stuck port clock   ;
-; Shifter:SR2|Y[8..15]                   ; Stuck at GND due to stuck port clock   ;
-; State_machine:sm01|present_state.R     ; Stuck at GND due to stuck port clock   ;
-; State_machine:sm01|present_state.I     ; Stuck at GND due to stuck port clock   ;
-; State_machine:sm01|present_state.C     ; Stuck at GND due to stuck port clock   ;
-; State_machine:sm01|present_state.A     ; Stuck at GND due to stuck port clock   ;
-; State_machine:sm01|present_state.S     ; Stuck at GND due to stuck port clock   ;
-; Shifter:SR1|Y[0..7]                    ; Lost fanout                            ;
-; State_machine:sm01|present_state.Z     ; Stuck at GND due to stuck port clock   ;
-; Shifter:SR2|Y[0..7]                    ; Stuck at GND due to stuck port clock   ;
-; Total Number of Removed Registers = 54 ;                                        ;
-+----------------------------------------+----------------------------------------+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; Shifter:SR1|Y[8..15]                  ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 8 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                ;
-+------------------------------------+---------------------------+-------------------------------------------------------------------------------------------+
-; Register name                      ; Reason for Removal        ; Registers Removed due to This Register                                                    ;
-+------------------------------------+---------------------------+-------------------------------------------------------------------------------------------+
-; State_machine:sm01|present_state.A ; Stuck at GND              ; Shifter:SR1|Y[0], Shifter:SR1|Y[1], Shifter:SR1|Y[2], Shifter:SR1|Y[3], Shifter:SR1|Y[4], ;
-;                                    ; due to stuck port clock   ; Shifter:SR1|Y[5], Shifter:SR1|Y[6], Shifter:SR1|Y[7]                                      ;
-; Shifter:SR1|Y[15]                  ; Stuck at GND              ; Shifter:SR1|Y[14], Shifter:SR1|Y[13], Shifter:SR1|Y[12], Shifter:SR1|Y[11],               ;
-;                                    ; due to stuck port data_in ; Shifter:SR1|Y[10], Shifter:SR1|Y[9], Shifter:SR1|Y[8]                                     ;
-; Shifter:SR2|Y[0]                   ; Stuck at GND              ; Shifter:SR2|Y[1], Shifter:SR2|Y[2], Shifter:SR2|Y[3], Shifter:SR2|Y[4], Shifter:SR2|Y[5], ;
-;                                    ; due to stuck port clock   ; Shifter:SR2|Y[6], Shifter:SR2|Y[7]                                                        ;
-+------------------------------------+---------------------------+-------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                 ;
++-------------------+---------------------------+-----------------------------------------------------------------------------+
+; Register name     ; Reason for Removal        ; Registers Removed due to This Register                                      ;
++-------------------+---------------------------+-----------------------------------------------------------------------------+
+; Shifter:SR1|Y[15] ; Stuck at GND              ; Shifter:SR1|Y[14], Shifter:SR1|Y[13], Shifter:SR1|Y[12], Shifter:SR1|Y[11], ;
+;                   ; due to stuck port data_in ; Shifter:SR1|Y[10], Shifter:SR1|Y[9], Shifter:SR1|Y[8]                       ;
++-------------------+---------------------------+-----------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -253,12 +250,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 46    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 24    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 24    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -308,9 +305,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 10.1 Build 197 01/19/2011 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Dec 13 11:44:11 2017
+    Info: Processing started: Wed Dec 13 14:39:44 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Multiplier -c Multiplier
-Info: Default assignment values were changed in the current version of the Quartus II software -- changes to default assignments values are contained in file c:/altera/10.1sp1/quartus/bin64/assignment_defaults.qdf
 Info: Found 14 design units, including 7 entities, in source file multiplier.vhd
     Info: Found design unit 1: Multiplier-struct
     Info: Found design unit 2: State_machine-arch_State_machine
@@ -330,72 +326,46 @@ Info: Elaborating entity "Multiplier" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at Multiplier.vhd(16): object "smCheck" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at Multiplier.vhd(16): object "smZero" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at Multiplier.vhd(16): object "smReady" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at Multiplier.vhd(16): used implicit default value for signal "Clk" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info: Elaborating entity "State_machine" for hierarchy "State_machine:sm01"
 Info: Elaborating entity "Shifter" for hierarchy "Shifter:SR1"
 Info: Elaborating entity "Add16" for hierarchy "Add16:A1"
 Info: Elaborating entity "Mux16" for hierarchy "Mux16:M1"
 Info: Elaborating entity "Reg16" for hierarchy "Reg16:G1"
 Info: Elaborating entity "AllZero" for hierarchy "AllZero:Z1"
+Warning: Ignored assignment(s) for "KEY[0]" because "KEY" is not a bus or array
+Warning: Ignored assignment(s) for "KEY[1]" because "KEY" is not a bus or array
+Warning: Ignored assignment(s) for "KEY[2]" because "KEY" is not a bus or array
+Warning: Ignored assignment(s) for "KEY[3]" because "KEY" is not a bus or array
+Warning: Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "Shifter:SR2|Y[0]" is converted into an equivalent circuit using register "Shifter:SR2|Y[0]~_emulated" and latch "Shifter:SR2|Y[0]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[1]" is converted into an equivalent circuit using register "Shifter:SR2|Y[1]~_emulated" and latch "Shifter:SR2|Y[1]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[2]" is converted into an equivalent circuit using register "Shifter:SR2|Y[2]~_emulated" and latch "Shifter:SR2|Y[2]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[3]" is converted into an equivalent circuit using register "Shifter:SR2|Y[3]~_emulated" and latch "Shifter:SR2|Y[3]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[4]" is converted into an equivalent circuit using register "Shifter:SR2|Y[4]~_emulated" and latch "Shifter:SR2|Y[4]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[5]" is converted into an equivalent circuit using register "Shifter:SR2|Y[5]~_emulated" and latch "Shifter:SR2|Y[5]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[6]" is converted into an equivalent circuit using register "Shifter:SR2|Y[6]~_emulated" and latch "Shifter:SR2|Y[6]~latch"
+    Warning (13310): Register "Shifter:SR2|Y[7]" is converted into an equivalent circuit using register "Shifter:SR2|Y[7]~_emulated" and latch "Shifter:SR2|Y[7]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[0]" is converted into an equivalent circuit using register "Shifter:SR1|Y[0]~_emulated" and latch "Shifter:SR1|Y[0]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[7]" is converted into an equivalent circuit using register "Shifter:SR1|Y[7]~_emulated" and latch "Shifter:SR1|Y[7]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[6]" is converted into an equivalent circuit using register "Shifter:SR1|Y[6]~_emulated" and latch "Shifter:SR1|Y[6]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[5]" is converted into an equivalent circuit using register "Shifter:SR1|Y[5]~_emulated" and latch "Shifter:SR1|Y[5]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[4]" is converted into an equivalent circuit using register "Shifter:SR1|Y[4]~_emulated" and latch "Shifter:SR1|Y[4]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[3]" is converted into an equivalent circuit using register "Shifter:SR1|Y[3]~_emulated" and latch "Shifter:SR1|Y[3]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[2]" is converted into an equivalent circuit using register "Shifter:SR1|Y[2]~_emulated" and latch "Shifter:SR1|Y[2]~latch"
+    Warning (13310): Register "Shifter:SR1|Y[1]" is converted into an equivalent circuit using register "Shifter:SR1|Y[1]~_emulated" and latch "Shifter:SR1|Y[1]~latch"
 Warning: Output pins are stuck at VCC or GND
-    Warning (13410): Pin "Y[0]" is stuck at GND
-    Warning (13410): Pin "Y[1]" is stuck at GND
-    Warning (13410): Pin "Y[2]" is stuck at GND
-    Warning (13410): Pin "Y[3]" is stuck at GND
-    Warning (13410): Pin "Y[4]" is stuck at GND
-    Warning (13410): Pin "Y[5]" is stuck at GND
-    Warning (13410): Pin "Y[6]" is stuck at GND
-    Warning (13410): Pin "Y[7]" is stuck at GND
-    Warning (13410): Pin "Y[8]" is stuck at GND
-    Warning (13410): Pin "Y[9]" is stuck at GND
-    Warning (13410): Pin "Y[10]" is stuck at GND
-    Warning (13410): Pin "Y[11]" is stuck at GND
-    Warning (13410): Pin "Y[12]" is stuck at GND
-    Warning (13410): Pin "Y[13]" is stuck at GND
-    Warning (13410): Pin "Y[14]" is stuck at GND
-    Warning (13410): Pin "Y[15]" is stuck at GND
-    Warning (13410): Pin "LEDG[0]" is stuck at VCC
-    Warning (13410): Pin "LEDG[1]" is stuck at GND
-    Warning (13410): Pin "LEDG[2]" is stuck at GND
     Warning (13410): Pin "LEDG[3]" is stuck at GND
     Warning (13410): Pin "LEDG[4]" is stuck at GND
     Warning (13410): Pin "LEDG[5]" is stuck at GND
-Info: 8 registers lost all their fanouts during netlist optimizations. The first 8 are displayed below.
-    Info: Register "Shifter:SR1|Y[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Shifter:SR1|Y[7]" lost all its fanouts during netlist optimizations.
 Info: Generating hard_block partition "hard_block:auto_generated_inst"
-Warning: Design contains 18 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "CLOCK_50"
-    Warning (15610): No output dependent on input pin "KEY[0]"
-    Warning (15610): No output dependent on input pin "B[0]"
-    Warning (15610): No output dependent on input pin "B[1]"
-    Warning (15610): No output dependent on input pin "B[2]"
-    Warning (15610): No output dependent on input pin "B[3]"
-    Warning (15610): No output dependent on input pin "B[4]"
-    Warning (15610): No output dependent on input pin "B[5]"
-    Warning (15610): No output dependent on input pin "B[6]"
-    Warning (15610): No output dependent on input pin "B[7]"
-    Warning (15610): No output dependent on input pin "A[8]"
-    Warning (15610): No output dependent on input pin "A[15]"
-    Warning (15610): No output dependent on input pin "A[14]"
-    Warning (15610): No output dependent on input pin "A[13]"
-    Warning (15610): No output dependent on input pin "A[12]"
-    Warning (15610): No output dependent on input pin "A[11]"
-    Warning (15610): No output dependent on input pin "A[10]"
-    Warning (15610): No output dependent on input pin "A[9]"
-Info: Implemented 40 device resources after synthesis - the final resource count might be different
+Info: Implemented 156 device resources after synthesis - the final resource count might be different
     Info: Implemented 18 input pins
     Info: Implemented 22 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 46 warnings
-    Info: Peak virtual memory: 396 megabytes
-    Info: Processing ended: Wed Dec 13 11:44:14 2017
-    Info: Elapsed time: 00:00:03
+    Info: Implemented 116 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 397 megabytes
+    Info: Processing ended: Wed Dec 13 14:39:46 2017
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 
