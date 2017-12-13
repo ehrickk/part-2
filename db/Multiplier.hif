@@ -1,0 +1,315 @@
+Quartus II 64-Bit
+Version 10.1 Build 197 01/19/2011 Service Pack 1 SJ Web Edition
+14
+1046
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+Multiplier
+# storage
+db|Multiplier.(0).cnf
+db|Multiplier.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+|
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+State_machine
+# storage
+db|Multiplier.(1).cnf
+db|Multiplier.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(statussm)
+5 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+State_machine:sm01
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+Shifter
+# storage
+db|Multiplier.(2).cnf
+db|Multiplier.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(x)
+7 downto 0
+PARAMETER_STRING
+USR
+ constraint(y)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Shifter:SR1
+Shifter:SR2
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+Add16
+# storage
+db|Multiplier.(3).cnf
+db|Multiplier.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(in_1)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(in_2)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(som)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Add16:A1
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+Mux16
+# storage
+db|Multiplier.(4).cnf
+db|Multiplier.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(inp_a)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(inp_b)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(mux_output)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Mux16:M1
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+Reg16
+# storage
+db|Multiplier.(5).cnf
+db|Multiplier.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(in_16)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(out_16)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Reg16:G1
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+AllZero
+# storage
+db|Multiplier.(6).cnf
+db|Multiplier.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+multiplier.vhd
+3445aea60aecdf34faea777dea7e96
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(d)
+7 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+AllZero:Z1
+}
+# lmf
+|altera|10.1sp1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# complete
+
