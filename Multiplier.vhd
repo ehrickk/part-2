@@ -5,10 +5,10 @@ use ieee.std_logic_unsigned.all;
 
 entity Multiplier is
 port( 	CLOCK_50: in std_logic;                        		--50MHz Clock pulse
-			SW			: in std_logic_vector(15 downto 0);     	--A = SW(15-8)
-																				--B = SW(7-0)
+			A			: in std_logic_vector(15 downto 8);     	--A = SW(15-8)
+			B			: in std_logic_vector(7 downto 0);			--B = SW(7-0)
 			KEY		: in std_logic_vector(0 downto 0);      	--Start
-			LEDR: buffer std_logic_vector(15 downto 0); 			--Result of A * B
+			Y			: buffer std_logic_vector(15 downto 0);	--Result of A * B
 			LEDG     : buffer std_logic_vector(5 downto 0)); 	--Status state machine
 end Multiplier;
 
@@ -21,27 +21,27 @@ begin
 -- Clock divider, to reduce the 50M clock to a symmetrical 1 Hz clock
 -- Only needed when you want to run it slowly on the DE2 board
 
-	io01: process(CLOCK_50)
-		variable cnt_25M : integer range 0 to 25000000;
-		begin
-			if(CLOCK_50'event and CLOCK_50 ='1')then
-				if(cnt_25M=24999999)then
-					Clk<=NOT(Clk);
-					cnt_25M:=0;
-				else
-					cnt_25M:=cnt_25M+1;
-				end if;
-			end if;
-	end process;
+	-- io01: process(CLOCK_50)
+	--	variable cnt_25M : integer range 0 to 25000000;
+	--	begin
+	--		if(CLOCK_50'event and CLOCK_50 ='1')then
+	--			if(cnt_25M=24999999)then
+	--				Clk<=NOT(Clk);
+	--				cnt_25M:=0;
+	--			else
+	--				cnt_25M:=cnt_25M+1;
+	--			end if;
+	--		end if;
+	--end process;
 	
 	io02:Start <= not KEY(0);	-- Start button
-	io03:LEDR  <= MUXout;		-- Show result calculation presented on the red LEDs
+	io03:Y  <= MUXout;		-- Show result calculation presented on the red LEDs
 	
 	-- State machine, Controller of the data path
 	sm01: entity work.State_machine port map(Start, Stop, SR_A(0), Clk, smReady, smInit, smCheck, smAdd, smShift, smZero, LEDG);
 	-- Data path of the multiplier with connections between the different circuits											
-	SR1: entity work.Shifter port map(smInit, smShift, '0', Clk, SW(15 downto 8), SR_A);
-	SR2: entity work.Shifter port map(smInit, smShift, '1', Clk, SW(7 downto 0), SR_B);
+	SR1: entity work.Shifter port map(smInit, smShift, '0', Clk, A(15 downto 8), SR_A);
+	SR2: entity work.Shifter port map(smInit, smShift, '1', Clk, B(7 downto 0), SR_B);
 	A1: entity work.Add16 port map(SR_B, Result, ADDout);
 	M1: entity work.Mux16 port map(smAdd, ADDout, Result, MUXout);
 	G1: entity work.Reg16 port map(smInit, Clk, MUXout, Result);
