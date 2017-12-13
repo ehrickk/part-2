@@ -1,9 +1,0 @@
-
-State Machine - |Multiplier|State_machine:sm01|present_state
-Name present_state.Z present_state.S present_state.A present_state.C present_state.I present_state.R 
-present_state.R 0 0 0 0 0 0 
-present_state.I 0 0 0 0 1 1 
-present_state.C 0 0 0 1 0 1 
-present_state.A 0 0 1 0 0 1 
-present_state.S 0 1 0 0 0 1 
-present_state.Z 1 0 0 0 0 1 
