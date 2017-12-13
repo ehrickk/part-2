@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 entity Multiplier is
 port( 	CLOCK_50: in std_logic;                        		--50MHz Clock pulse
-			A			: in std_logic_vector(15 downto 8);     	--A = SW(15-8)
+			A			: in std_logic_vector(7 downto 0);     	--A = SW(15-8)
 			B			: in std_logic_vector(7 downto 0);			--B = SW(7-0)
 			KEY		: in std_logic_vector(0 downto 0);      	--Start
 			Y			: buffer std_logic_vector(15 downto 0);	--Result of A * B
@@ -38,13 +38,13 @@ begin
 	io03:Y  <= MUXout;		-- Show result calculation presented on the red LEDs
 	
 	-- State machine, Controller of the data path
-	sm01: entity work.State_machine port map(Start, Stop, SR_A(0), Clk, smReady, smInit, smCheck, smAdd, smShift, smZero, LEDG);
+	sm01: entity work.State_machine port map(Start, Stop, SR_A(0), CLOCK_50, smReady, smInit, smCheck, smAdd, smShift, smZero, LEDG);
 	-- Data path of the multiplier with connections between the different circuits											
-	SR1: entity work.Shifter port map(smInit, smShift, '0', Clk, A(15 downto 8), SR_A);
-	SR2: entity work.Shifter port map(smInit, smShift, '1', Clk, B(7 downto 0), SR_B);
+	SR1: entity work.Shifter port map(smInit, smShift, '0', CLOCK_50, A(7 downto 0), SR_A);
+	SR2: entity work.Shifter port map(smInit, smShift, '1', CLOCK_50, B(7 downto 0), SR_B);
 	A1: entity work.Add16 port map(SR_B, Result, ADDout);
 	M1: entity work.Mux16 port map(smAdd, ADDout, Result, MUXout);
-	G1: entity work.Reg16 port map(smInit, Clk, MUXout, Result);
+	G1: entity work.Reg16 port map(smInit, CLOCK_50, MUXout, Result);
 	Z1: entity work.AllZero port map(SR_A(7 downto 0), Stop);
 	
 end struct;
@@ -54,7 +54,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity State_machine is
-	port( 	Start, Stop, LSB, Clk					: in std_logic;
+	port( 	Start, Stop, LSB, CLOCK_50					: in std_logic;
 			Ready, Init, Check, Add, Shift, Zero 	: out std_logic;
 			StatusSM								: buffer std_logic_vector(5 downto 0));
 end State_machine;
@@ -74,7 +74,7 @@ begin
 	Shift<= '1' when present_state = S else '0';
 	Zero <= '1' when present_state = Z else '0';
 
-	SM_Multiply: process (present_state, next_state, Start, Stop, LSB, Clk)
+	SM_Multiply: process (present_state, next_state, Start, Stop, LSB, CLOCK_50)
 	begin
 		case present_state is
 		when R =>
@@ -108,9 +108,9 @@ begin
 	
 -- Replace present_state for next_state each clock pulse
 
-	state_clock: process(Clk)
+	state_clock: process(CLOCK_50)
 	begin
-		if(Clk'event and Clk = '1') then
+		if(CLOCK_50'event and CLOCK_50 = '1') then
 			present_state <= next_state;
 		end if;
 	end process state_clock;
@@ -132,17 +132,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity Shifter is
-	port(	Ld, En, Dir, Clk : in std_logic;
+	port(	Ld, En, Dir, CLOCK_50 : in std_logic;
 			X : in std_logic_vector(7 downto 0);
 			Y : buffer std_logic_vector(15 downto 0));
 end Shifter;
 
 architecture behavior of Shifter is
 begin
-	process(Clk, Ld, En, X, Y)
+	process(CLOCK_50, Ld, En, X, Y)
 	variable Temp : std_logic_vector(15 downto 0);
 	begin
-		if(Clk'event AND Clk = '1') then
+		if(CLOCK_50'event AND CLOCK_50 = '1') then
 			if En = '1' then
 				if Dir = '0' then 			   	 	-- Dir: '0'=Shift right, '1'=Shift left
 					Temp := Y;
@@ -212,16 +212,16 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity Reg16 is
-			port(Init, Clk		: in		std_logic;
+			port(Init, CLOCK_50		: in		std_logic;
 						  In_16	: in		std_logic_vector(15 downto 0);
 						  Out_16	: buffer	std_logic_vector(15 downto 0));
 end Reg16;
 
 architecture behavior of Reg16 is
 begin
-			process(Clk)
+			process(CLOCK_50)
 			begin
-				if(Clk'event AND Clk = '1') then
+				if(CLOCK_50'event AND CLOCK_50 = '1') then
 						if Init = '1' then	-- Clear the work register in initialization state
 								Out_16 <= (others => '0');
 						else
